@@ -19,7 +19,7 @@
         }
 
         .container {
-            max-width: 1700px;
+            max-width: 1750px;
             margin: 0 auto;
         }
 
@@ -248,7 +248,8 @@
         }
 
         .player-pool {
-            width: 420px;
+            width: 450px;
+            min-width: 450px;
             background: white;
             border-radius: 10px;
             padding: 25px;
@@ -358,6 +359,8 @@
             flex-direction: column;
             justify-content: center;
             box-sizing: border-box;
+            overflow: hidden;
+            min-width: 0;
         }
 
         .player-card:hover {
@@ -393,6 +396,7 @@
         .fa-card {
             background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
             cursor: pointer;
+            min-width: 0;
         }
 
         .fa-card.contract-set {
@@ -402,6 +406,30 @@
 
         .fa-card:not(.contract-set) {
             opacity: 0.85;
+        }
+
+        .fa-grid .fa-card {
+            min-width: 160px;
+            width: 100%;
+        }
+
+        .fa-grid .player-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            font-size: 0.9em;
+        }
+
+        .fa-grid .player-team {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.75em;
+        }
+
+        .fa-grid .player-cap {
+            font-size: 0.7em;
         }
 
         .fa-tab:hover {
@@ -417,8 +445,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 120px;
-            max-width: 120px;
+            min-width: 130px;
+            max-width: 130px;
         }
 
         .player-slots {
@@ -640,23 +668,19 @@
                                         <div class="player-name">KeAndre Lambert-Smith</div>
                                         <div class="player-cap">$1.1M</div>
                                     </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Oronde Gadsden II</div>
-                                        <div class="player-cap">$1.1M</div>
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="formation-position">
                                 <div class="position-label">TE</div>
                                 <div class="player-slots" data-position="TE">
-                                    <div class="player-card cut-player" draggable="true">
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Oronde Gadsden II</div>
+                                        <div class="player-cap">$1.1M</div>
+                                    </div>
+                                    <div class="player-card cut-player" draggable="true" data-savings="4.0">
                                         <div class="player-name">Will Dissly</div>
                                         <div class="player-cap">$5.5M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Jamaree Caldwell</div>
-                                        <div class="player-cap">$1.4M</div>
                                     </div>
                                 </div>
                             </div>
@@ -668,6 +692,12 @@
                                         <div class="player-name">Rashawn Slater</div>
                                         <div class="player-cap">$23.8M</div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="formation-position">
+                                <div class="position-label">LG</div>
+                                <div class="player-slots" data-position="LG">
                                     <div class="player-card" draggable="true">
                                         <div class="player-name">Ben Cleveland</div>
                                         <div class="player-cap">$1.1M</div>
@@ -676,29 +706,11 @@
                             </div>
 
                             <div class="formation-position">
-                                <div class="position-label">LG</div>
-                                <div class="player-slots" data-position="LG">
-                                    <div class="player-card cut-player" draggable="true">
-                                        <div class="player-name">Mekhi Becton</div>
-                                        <div class="player-cap">$12.2M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Justin Eboigbe</div>
-                                        <div class="player-cap">$1.3M</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="formation-position">
                                 <div class="position-label">C</div>
                                 <div class="player-slots" data-position="C">
-                                    <div class="player-card cut-player" draggable="true">
+                                    <div class="player-card cut-player" draggable="true" data-savings="5.875">
                                         <div class="player-name">Bradley Bozeman</div>
                                         <div class="player-cap">$6.9M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Kyle Kennard</div>
-                                        <div class="player-cap">$1.2M</div>
                                     </div>
                                 </div>
                             </div>
@@ -706,9 +718,9 @@
                             <div class="formation-position">
                                 <div class="position-label">RG</div>
                                 <div class="player-slots" data-position="RG">
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Scott Matlock</div>
-                                        <div class="player-cap">$1.2M</div>
+                                    <div class="player-card cut-player" draggable="true" data-savings="9.7">
+                                        <div class="player-name">Mekhi Becton</div>
+                                        <div class="player-cap">$12.2M</div>
                                     </div>
                                 </div>
                             </div>
@@ -740,15 +752,20 @@
                                         <div class="player-name">Quentin Johnston</div>
                                         <div class="player-cap">$4.2M</div>
                                     </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Derius Davis</div>
+                                        <div class="player-cap">$1.3M</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Back Row: QB behind LG, RB behind C -->
+                        <!-- Back Row: QB behind C, RB behind RG -->
                         <div class="formation-row">
-                            <div style="min-width: 120px;"></div>
-                            <div style="min-width: 120px;"></div>
-                            <div style="min-width: 120px;"></div>
+                            <div style="min-width: 130px;"></div>
+                            <div style="min-width: 130px;"></div>
+                            <div style="min-width: 130px;"></div>
+                            <div style="min-width: 130px;"></div>
 
                             <div class="formation-position">
                                 <div class="position-label">QB</div>
@@ -767,12 +784,13 @@
                                         <div class="player-name">Omarion Hampton</div>
                                         <div class="player-cap">$4.0M</div>
                                     </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Derius Davis</div>
-                                        <div class="player-cap">$1.3M</div>
-                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Trailing spacers to center the row (for RT, WR1, WR2) -->
+                            <div style="min-width: 130px;"></div>
+                            <div style="min-width: 130px;"></div>
+                            <div style="min-width: 130px;"></div>
                         </div>
                     </div>
                 </div>
@@ -787,8 +805,12 @@
                                 <div class="position-label">CB3</div>
                                 <div class="player-slots" data-position="CB3">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Cam Hart</div>
-                                        <div class="player-cap">$1.2M</div>
+                                        <div class="player-name">Derwin James</div>
+                                        <div class="player-cap">$24.6M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Nikko Reed</div>
+                                        <div class="player-cap">$1.0M</div>
                                     </div>
                                 </div>
                             </div>
@@ -800,7 +822,7 @@
                                         <div class="player-name">Tuli Tuipulotu</div>
                                         <div class="player-cap">$6.1M</div>
                                     </div>
-                                    <div class="player-card cut-player" draggable="true">
+                                    <div class="player-card cut-player" draggable="true" data-savings="3.49">
                                         <div class="player-name">Bud Dupree</div>
                                         <div class="player-cap">$3.7M</div>
                                     </div>
@@ -811,12 +833,12 @@
                                 <div class="position-label">DT</div>
                                 <div class="player-slots" data-position="DT">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Tarheeb Still</div>
-                                        <div class="player-cap">$1.2M</div>
+                                        <div class="player-name">Justin Eboigbe</div>
+                                        <div class="player-cap">$1.3M</div>
                                     </div>
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Nikko Reed</div>
-                                        <div class="player-cap">$1.0M</div>
+                                        <div class="player-name">Scott Matlock</div>
+                                        <div class="player-cap">$1.2M</div>
                                     </div>
                                 </div>
                             </div>
@@ -825,12 +847,8 @@
                                 <div class="position-label">NT</div>
                                 <div class="player-slots" data-position="NT">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Jordan Oladokun</div>
-                                        <div class="player-cap">$1.0M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Marlowe Wax</div>
-                                        <div class="player-cap">$1.0M</div>
+                                        <div class="player-name">Jamaree Caldwell</div>
+                                        <div class="player-cap">$1.4M</div>
                                     </div>
                                 </div>
                             </div>
@@ -839,12 +857,8 @@
                                 <div class="position-label">EDGE</div>
                                 <div class="player-slots" data-position="EDGE2">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Eric Rogers</div>
-                                        <div class="player-cap">$0.9M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Savion Washington</div>
-                                        <div class="player-cap">$0.9M</div>
+                                        <div class="player-name">Kyle Kennard</div>
+                                        <div class="player-cap">$1.2M</div>
                                     </div>
                                 </div>
                             </div>
@@ -863,8 +877,8 @@
                                 <div class="position-label">CB2</div>
                                 <div class="player-slots" data-position="CB2">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Elijah Molden</div>
-                                        <div class="player-cap">$7.9M</div>
+                                        <div class="player-name">Tarheeb Still</div>
+                                        <div class="player-cap">$1.2M</div>
                                     </div>
                                 </div>
                             </div>
@@ -899,11 +913,7 @@
                                         <div class="player-cap">$3.8M</div>
                                     </div>
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Peter Bowden</div>
-                                        <div class="player-cap">$1.0M</div>
-                                    </div>
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Tanner McLachlan</div>
+                                        <div class="player-name">Marlowe Wax</div>
                                         <div class="player-cap">$1.0M</div>
                                     </div>
                                 </div>
@@ -918,8 +928,8 @@
                                 <div class="position-label">SS</div>
                                 <div class="player-slots" data-position="SS">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">Derwin James</div>
-                                        <div class="player-cap">$24.6M</div>
+                                        <div class="player-name">R.J. Mickens</div>
+                                        <div class="player-cap">$1.0M</div>
                                     </div>
                                 </div>
                             </div>
@@ -931,8 +941,8 @@
                                 <div class="position-label">FS</div>
                                 <div class="player-slots" data-position="FS">
                                     <div class="player-card" draggable="true">
-                                        <div class="player-name">R.J. Mickens</div>
-                                        <div class="player-cap">$1.0M</div>
+                                        <div class="player-name">Elijah Molden</div>
+                                        <div class="player-cap">$7.9M</div>
                                     </div>
                                 </div>
                             </div>
@@ -944,6 +954,30 @@
                             <div class="formation-position">
                                 <div class="position-label">Reserves</div>
                                 <div class="player-slots" data-position="BENCH">
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Cam Hart</div>
+                                        <div class="player-cap">$1.2M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Jordan Oladokun</div>
+                                        <div class="player-cap">$1.0M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Peter Bowden</div>
+                                        <div class="player-cap">$1.0M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Tanner McLachlan</div>
+                                        <div class="player-cap">$1.0M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Eric Rogers</div>
+                                        <div class="player-cap">$0.9M</div>
+                                    </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Savion Washington</div>
+                                        <div class="player-cap">$0.9M</div>
+                                    </div>
                                     <div class="player-card" draggable="true">
                                         <div class="player-name">Josh Fuga</div>
                                         <div class="player-cap">$0.9M</div>
@@ -1008,14 +1042,18 @@
                 </div>
 
                 <!-- FREE AGENT POOL SIDEBAR -->
-                <div class="player-pool" style="width: 420px;">
+                <div class="player-pool" style="width: 450px;">
                     <h3>🏈 2026 Free Agent Pool</h3>
-                    <p style="font-size: 0.8em; color: #666; margin-bottom: 15px;">Click a player to set contract, then drag to roster</p>
+                    <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">Click to set contract, double-click green to edit</p>
+
+                    <!-- Add Custom Player Button -->
+                    <button id="add-custom-player-btn" style="width: 100%; padding: 10px; margin-bottom: 15px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9em; transition: opacity 0.2s;">
+                        + Add Custom Player
+                    </button>
 
                     <!-- Position Tabs -->
                     <div class="fa-tabs" style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 15px;">
                         <button class="fa-tab active" data-tab="TE" style="padding: 8px 12px; border: none; background: #0080C6; color: white; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">TE</button>
-                        <button class="fa-tab" data-tab="LT" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">LT</button>
                         <button class="fa-tab" data-tab="LG" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">LG</button>
                         <button class="fa-tab" data-tab="C" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">C</button>
                         <button class="fa-tab" data-tab="RG" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">RG</button>
@@ -1042,27 +1080,6 @@
                             <div class="player-card fa-card" data-team="Ravens" data-age="27"><div class="player-name">Charlie Kolar</div><div class="player-team">Ravens • 27</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Texans" data-age="28"><div class="player-name">Harrison Bryant</div><div class="player-team">Texans • 28</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Dolphins" data-age="26"><div class="player-name">Greg Dulcich</div><div class="player-team">Dolphins • 26</div><div class="player-cap">Click to set $</div></div>
-                        </div>
-                    </div>
-
-                    <!-- LT Tab Content -->
-                    <div class="fa-tab-content" data-tab-content="LT" style="display: none;">
-                        <div class="player-slots fa-grid" data-position="POOL-LT" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                            <div class="player-card fa-card" data-team="49ers"><div class="player-name">Trent Williams</div><div class="player-team">49ers</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Falcons"><div class="player-name">Jake Matthews</div><div class="player-team">Falcons</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Commanders"><div class="player-name">Laremy Tunsil</div><div class="player-team">Commanders</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Bills"><div class="player-name">Dion Dawkins</div><div class="player-team">Bills</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Giants"><div class="player-name">Andrew Thomas</div><div class="player-team">Giants</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Raiders"><div class="player-name">Kolton Miller</div><div class="player-team">Raiders</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Vikings"><div class="player-name">Christian Darrisaw</div><div class="player-team">Vikings</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Bengals"><div class="player-name">Orlando Brown Jr.</div><div class="player-team">Bengals</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Lions"><div class="player-name">Taylor Decker</div><div class="player-team">Lions</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Panthers"><div class="player-name">Ikem Ekwonu</div><div class="player-team">Panthers</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Eagles"><div class="player-name">Jordan Mailata</div><div class="player-team">Eagles</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Jaguars"><div class="player-name">Walker Little</div><div class="player-team">Jaguars</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Seahawks"><div class="player-name">Charles Cross</div><div class="player-team">Seahawks</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Ravens"><div class="player-name">Ronnie Stanley</div><div class="player-team">Ravens</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Titans"><div class="player-name">Dan Moore Jr.</div><div class="player-team">Titans</div><div class="player-cap">Click to set $</div></div>
                         </div>
                     </div>
 
@@ -1174,21 +1191,21 @@
                     <!-- S Tab Content -->
                     <div class="fa-tab-content" data-tab-content="S" style="display: none;">
                         <div class="player-slots fa-grid" data-position="POOL-S" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                            <div class="player-card fa-card" data-team="Buccaneers"><div class="player-name">Antoine Winfield Jr.</div><div class="player-team">Buccaneers</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Falcons"><div class="player-name">Jessie Bates III</div><div class="player-team">Falcons</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Cardinals"><div class="player-name">Budda Baker</div><div class="player-team">Cardinals</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Packers"><div class="player-name">Xavier McKinney</div><div class="player-team">Packers</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Dolphins"><div class="player-name">Minkah Fitzpatrick</div><div class="player-team">Dolphins</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Giants"><div class="player-name">Jevon Holland</div><div class="player-team">Giants</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Ravens"><div class="player-name">Kyle Hamilton</div><div class="player-team">Ravens</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Colts"><div class="player-name">Cam Bynum</div><div class="player-team">Colts</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Broncos"><div class="player-name">Talanoa Hufanga</div><div class="player-team">Broncos</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Seahawks"><div class="player-name">Julian Love</div><div class="player-team">Seahawks</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Titans"><div class="player-name">Amani Hooker</div><div class="player-team">Titans</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Saints"><div class="player-name">Justin Reid</div><div class="player-team">Saints</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Raiders"><div class="player-name">Jeremy Chinn</div><div class="player-team">Raiders</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Broncos"><div class="player-name">Brandon Jones</div><div class="player-team">Broncos</div><div class="player-cap">Click to set $</div></div>
-                            <div class="player-card fa-card" data-team="Panthers"><div class="player-name">Trevon Moehrig</div><div class="player-team">Panthers</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Seahawks" data-age="25"><div class="player-name">A.J. Finley</div><div class="player-team">Seahawks • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Ravens" data-age="29"><div class="player-name">Alohi Gilman</div><div class="player-team">Ravens • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Jets" data-age="26"><div class="player-name">Andre Cisco</div><div class="player-team">Jets • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Jaguars" data-age="30"><div class="player-name">Andrew Wingard</div><div class="player-team">Jaguars • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Ravens" data-age="27"><div class="player-name">Ar'Darius Washington</div><div class="player-team">Ravens • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Dolphins" data-age="30"><div class="player-name">Ashtyn Davis</div><div class="player-team">Dolphins • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Texans" data-age="26"><div class="player-name">Brandon Hill</div><div class="player-team">Texans • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chiefs" data-age="27"><div class="player-name">Bryan Cook</div><div class="player-team">Chiefs • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bears" data-age="29"><div class="player-name">Chauncey Gardner-Johnson Jr.</div><div class="player-team">Bears • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Buccaneers" data-age="26"><div class="player-name">Christian Izien</div><div class="player-team">Buccaneers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Steelers" data-age="31"><div class="player-name">Chuck Clark</div><div class="player-team">Steelers • 31</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Panthers" data-age="30"><div class="player-name">D'Anthony Bell</div><div class="player-team">Panthers • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bills" data-age="28"><div class="player-name">Damar Hamlin</div><div class="player-team">Bills • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Giants" data-age="26"><div class="player-name">Dane Belton</div><div class="player-team">Giants • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Lions" data-age="28"><div class="player-name">Daniel Thomas</div><div class="player-team">Lions • 28</div><div class="player-cap">Click to set $</div></div>
                         </div>
                     </div>
                 </div>
@@ -1196,7 +1213,7 @@
                 <!-- Contract Input Modal -->
                 <div id="contract-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
                     <div style="background: white; padding: 30px; border-radius: 15px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
-                        <h3 style="color: #0080C6; margin-bottom: 10px;">Set Contract Amount</h3>
+                        <h3 id="modal-title" style="color: #0080C6; margin-bottom: 10px;">Set Contract Amount</h3>
                         <p id="modal-player-name" style="font-size: 1.2em; font-weight: bold; margin-bottom: 5px;"></p>
                         <p id="modal-player-team" style="color: #666; margin-bottom: 20px;"></p>
                         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px;">
@@ -1207,6 +1224,38 @@
                         <div style="display: flex; gap: 10px; justify-content: center;">
                             <button id="modal-cancel" style="padding: 12px 25px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
                             <button id="modal-confirm" style="padding: 12px 25px; background: #0080C6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Set Contract</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Player Modal -->
+                <div id="custom-player-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                        <h3 style="color: #28a745; margin-bottom: 20px;">Add Custom Player</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                            <input type="text" id="custom-player-name" placeholder="Player Name" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; text-align: center;">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="number" id="custom-player-age" placeholder="Age" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; width: 80px; text-align: center;" min="20" max="45">
+                                <select id="custom-player-position" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; flex: 1; cursor: pointer;">
+                                    <option value="">Select Position</option>
+                                    <option value="TE">TE - Tight End</option>
+                                    <option value="LG">LG - Left Guard</option>
+                                    <option value="C">C - Center</option>
+                                    <option value="RG">RG - Right Guard</option>
+                                    <option value="EDGE">EDGE - Edge Rusher</option>
+                                    <option value="IDL">IDL - Interior DL</option>
+                                    <option value="S">S - Safety</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <span style="font-size: 1.2em; font-weight: bold;">$</span>
+                                <input type="number" id="custom-player-contract" placeholder="Contract (e.g. 15)" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; width: 120px; text-align: center;" min="0.1" step="0.1">
+                                <span style="font-size: 1em; font-weight: bold;">M</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: center;">
+                            <button id="custom-player-cancel" style="padding: 12px 25px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
+                            <button id="custom-player-confirm" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Add Player</button>
                         </div>
                     </div>
                 </div>
@@ -1293,7 +1342,8 @@
                         isCut: card.classList.contains('cut-player'),
                         isFreeAgent: card.classList.contains('fa-card'),
                         hasContract: card.classList.contains('contract-set'),
-                        team: teamEl ? teamEl.textContent : (card.getAttribute('data-team') || '')
+                        team: teamEl ? teamEl.textContent : (card.getAttribute('data-team') || ''),
+                        savings: card.getAttribute('data-savings') || null
                     });
                 });
                 state[position] = players;
@@ -1335,6 +1385,11 @@
                     if (playerData.hasContract) classes += ' contract-set';
                     card.className = classes;
 
+                    // Restore savings attribute for cut candidates
+                    if (playerData.savings) {
+                        card.setAttribute('data-savings', playerData.savings);
+                    }
+
                     // Only make draggable if not an FA without contract
                     if (!playerData.isFreeAgent || playerData.hasContract) {
                         card.draggable = true;
@@ -1373,16 +1428,18 @@
                     if (playerData.isFreeAgent && !playerData.hasContract) {
                         card.addEventListener('click', function(e) {
                             if (this.classList.contains('contract-set')) return;
+                            openContractModal(this, false);
+                        });
+                    }
 
-                            selectedFACard = this;
-                            const playerName = this.querySelector('.player-name').textContent;
-                            const playerTeam = this.querySelector('.player-team')?.textContent || this.getAttribute('data-team') || '';
-
-                            modalPlayerName.textContent = playerName;
-                            modalPlayerTeam.textContent = 'Former Team: ' + playerTeam;
-                            contractInput.value = '';
-                            modal.style.display = 'flex';
-                            contractInput.focus();
+                    // Add double-click handler for FA cards with contracts (to edit)
+                    if (playerData.isFreeAgent && playerData.hasContract) {
+                        card.addEventListener('dblclick', function(e) {
+                            if (this.classList.contains('contract-set')) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                openContractModal(this, true);
+                            }
                         });
                     }
 
@@ -1424,16 +1481,22 @@
                     const destPosition = this.getAttribute('data-position');
                     const capValue = parseCapValue(draggedElement.querySelector('.player-cap').textContent);
 
+                    // For cut candidates, use savings value instead of cap value
+                    const isCutPlayer = draggedElement.classList.contains('cut-player');
+                    const savingsValue = draggedElement.getAttribute('data-savings');
+                    const adjustmentValue = (isCutPlayer && savingsValue) ? parseFloat(savingsValue) : capValue;
+
                     // Calculate cap adjustment based on movement
                     const fromPool = isPoolPosition(sourcePosition);
                     const toPool = isPoolPosition(destPosition);
 
                     if (fromPool && !toPool) {
                         // Moving FROM pool TO depth chart = signing player, subtract cap
-                        capAdjustment -= capValue;
+                        // For cut players returning, subtract their savings value
+                        capAdjustment -= adjustmentValue;
                     } else if (!fromPool && toPool) {
-                        // Moving FROM depth chart TO pool = releasing player, add cap
-                        capAdjustment += capValue;
+                        // Moving FROM depth chart TO pool = releasing/cutting player, add savings
+                        capAdjustment += adjustmentValue;
                     }
                     // If moving within same area (pool to pool or depth to depth), no cap change
 
@@ -1491,35 +1554,57 @@
 
         // ========== CONTRACT MODAL FUNCTIONALITY ==========
         let selectedFACard = null;
+        let isEditingContract = false;
         const modal = document.getElementById('contract-modal');
+        const modalTitle = document.getElementById('modal-title');
         const modalPlayerName = document.getElementById('modal-player-name');
         const modalPlayerTeam = document.getElementById('modal-player-team');
         const contractInput = document.getElementById('contract-amount');
         const modalCancel = document.getElementById('modal-cancel');
         const modalConfirm = document.getElementById('modal-confirm');
 
-        // Handle clicking on FA cards
+        // Function to open contract modal (for both setting and editing)
+        function openContractModal(card, isEdit = false) {
+            selectedFACard = card;
+            isEditingContract = isEdit;
+            const playerName = card.querySelector('.player-name').textContent;
+            const playerTeam = card.querySelector('.player-team')?.textContent || card.getAttribute('data-team') || '';
+
+            modalTitle.textContent = isEdit ? 'Edit Contract' : 'Set Contract Amount';
+            modalPlayerName.textContent = playerName;
+            modalPlayerTeam.textContent = 'Former Team: ' + playerTeam;
+
+            // Pre-fill current value if editing
+            if (isEdit) {
+                const currentCap = card.querySelector('.player-cap').textContent;
+                const currentValue = parseCapValue(currentCap);
+                contractInput.value = currentValue;
+            } else {
+                contractInput.value = '';
+            }
+
+            modal.style.display = 'flex';
+            contractInput.focus();
+            contractInput.select();
+        }
+
+        // Handle clicking on FA cards (single click for new, double click for edit)
         document.querySelectorAll('.fa-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                // If already has contract set and is being dragged, don't open modal
-                if (this.classList.contains('contract-set') && e.target === this) {
-                    return;
-                }
-
-                // Don't open modal if already has contract (allow drag instead)
+                // If already has contract set, ignore single clicks (use double-click to edit)
                 if (this.classList.contains('contract-set')) {
                     return;
                 }
+                openContractModal(this, false);
+            });
 
-                selectedFACard = this;
-                const playerName = this.querySelector('.player-name').textContent;
-                const playerTeam = this.querySelector('.player-team')?.textContent || this.getAttribute('data-team') || '';
-
-                modalPlayerName.textContent = playerName;
-                modalPlayerTeam.textContent = 'Former Team: ' + playerTeam;
-                contractInput.value = '';
-                modal.style.display = 'flex';
-                contractInput.focus();
+            // Double-click to edit existing contracts
+            card.addEventListener('dblclick', function(e) {
+                if (this.classList.contains('contract-set')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openContractModal(this, true);
+                }
             });
         });
 
@@ -1527,6 +1612,7 @@
         modalCancel.addEventListener('click', function() {
             modal.style.display = 'none';
             selectedFACard = null;
+            isEditingContract = false;
         });
 
         // Close modal on outside click
@@ -1534,6 +1620,7 @@
             if (e.target === modal) {
                 modal.style.display = 'none';
                 selectedFACard = null;
+                isEditingContract = false;
             }
         });
 
@@ -1550,21 +1637,24 @@
                 const capEl = selectedFACard.querySelector('.player-cap');
                 capEl.textContent = '$' + amount.toFixed(1) + 'M';
 
-                // Mark as contract set and make draggable
-                selectedFACard.classList.add('contract-set');
-                selectedFACard.setAttribute('draggable', 'true');
+                // Only set up draggable if this is a new contract (not editing)
+                if (!isEditingContract) {
+                    // Mark as contract set and make draggable
+                    selectedFACard.classList.add('contract-set');
+                    selectedFACard.setAttribute('draggable', 'true');
 
-                // Add drag event listeners
-                selectedFACard.addEventListener('dragstart', function(e) {
-                    draggedElement = this;
-                    sourcePosition = this.closest('.player-slots').getAttribute('data-position');
-                    this.style.opacity = '0.5';
-                });
+                    // Add drag event listeners
+                    selectedFACard.addEventListener('dragstart', function(e) {
+                        draggedElement = this;
+                        sourcePosition = this.closest('.player-slots').getAttribute('data-position');
+                        this.style.opacity = '0.5';
+                    });
 
-                selectedFACard.addEventListener('dragend', function(e) {
-                    this.style.opacity = '1';
-                    sourcePosition = null;
-                });
+                    selectedFACard.addEventListener('dragend', function(e) {
+                        this.style.opacity = '1';
+                        sourcePosition = null;
+                    });
+                }
 
                 // Save state
                 saveDepthChart();
@@ -1572,6 +1662,7 @@
 
             modal.style.display = 'none';
             selectedFACard = null;
+            isEditingContract = false;
         });
 
         // Handle Enter key in contract input
@@ -1595,6 +1686,121 @@
                 this.style.opacity = '1';
                 sourcePosition = null;
             });
+        });
+
+        // ========== CUSTOM PLAYER MODAL FUNCTIONALITY ==========
+        const customPlayerModal = document.getElementById('custom-player-modal');
+        const customPlayerBtn = document.getElementById('add-custom-player-btn');
+        const customPlayerName = document.getElementById('custom-player-name');
+        const customPlayerAge = document.getElementById('custom-player-age');
+        const customPlayerPosition = document.getElementById('custom-player-position');
+        const customPlayerContract = document.getElementById('custom-player-contract');
+        const customPlayerCancel = document.getElementById('custom-player-cancel');
+        const customPlayerConfirm = document.getElementById('custom-player-confirm');
+
+        // Open custom player modal
+        customPlayerBtn.addEventListener('click', function() {
+            customPlayerName.value = '';
+            customPlayerAge.value = '';
+            customPlayerPosition.value = '';
+            customPlayerContract.value = '';
+            customPlayerModal.style.display = 'flex';
+            customPlayerName.focus();
+        });
+
+        // Cancel custom player modal
+        customPlayerCancel.addEventListener('click', function() {
+            customPlayerModal.style.display = 'none';
+        });
+
+        // Close on outside click
+        customPlayerModal.addEventListener('click', function(e) {
+            if (e.target === customPlayerModal) {
+                customPlayerModal.style.display = 'none';
+            }
+        });
+
+        // Confirm custom player
+        customPlayerConfirm.addEventListener('click', function() {
+            const name = customPlayerName.value.trim();
+            const age = parseInt(customPlayerAge.value);
+            const position = customPlayerPosition.value;
+            const contract = parseFloat(customPlayerContract.value);
+
+            if (!name) {
+                alert('Please enter a player name');
+                return;
+            }
+            if (isNaN(age) || age < 20 || age > 45) {
+                alert('Please enter a valid age (20-45)');
+                return;
+            }
+            if (!position) {
+                alert('Please select a position');
+                return;
+            }
+            if (isNaN(contract) || contract <= 0) {
+                alert('Please enter a valid contract amount');
+                return;
+            }
+
+            // Create the new player card
+            const card = document.createElement('div');
+            card.className = 'player-card fa-card contract-set';
+            card.setAttribute('data-team', 'Custom');
+            card.setAttribute('data-age', age);
+            card.setAttribute('draggable', 'true');
+            card.innerHTML = `
+                <div class="player-name">${name}</div>
+                <div class="player-team">Custom • ${age}</div>
+                <div class="player-cap">$${contract.toFixed(1)}M</div>
+            `;
+
+            // Add drag event listeners
+            card.addEventListener('dragstart', function(e) {
+                draggedElement = this;
+                sourcePosition = this.closest('.player-slots').getAttribute('data-position');
+                this.style.opacity = '0.5';
+            });
+
+            card.addEventListener('dragend', function(e) {
+                this.style.opacity = '1';
+                sourcePosition = null;
+            });
+
+            // Add double-click to edit
+            card.addEventListener('dblclick', function(e) {
+                if (this.classList.contains('contract-set')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openContractModal(this, true);
+                }
+            });
+
+            // Find the correct tab content and add the card
+            const tabContent = document.querySelector(`[data-tab-content="${position}"]`);
+            if (tabContent) {
+                const grid = tabContent.querySelector('.fa-grid');
+                if (grid) {
+                    grid.appendChild(card);
+                }
+            }
+
+            // Save state
+            saveDepthChart();
+
+            // Close modal
+            customPlayerModal.style.display = 'none';
+
+            // Switch to that tab
+            document.querySelector(`[data-tab="${position}"]`)?.click();
+        });
+
+        // Handle Enter key in custom player modal
+        customPlayerContract.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                customPlayerConfirm.click();
+            }
         });
     </script>
 </body>
