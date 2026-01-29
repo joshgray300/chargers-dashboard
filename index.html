@@ -253,7 +253,7 @@
             background: white;
             border-radius: 10px;
             padding: 25px;
-            max-height: 1600px;
+            max-height: 85vh;
             overflow-y: auto;
             position: sticky;
             top: 20px;
@@ -502,6 +502,7 @@
                     <h3 style="margin-bottom: 15px; font-size: 1.1em; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 8px;">Front Office</h3>
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <div><strong>GM:</strong> Joe Hortiz</div>
+                        <div><strong>AGM:</strong> Chad Alexander</div>
                     </div>
                 </div>
 
@@ -535,7 +536,7 @@
                     <h3 style="margin-bottom: 15px; font-size: 1.1em; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 8px;">Defensive Staff</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                         <div style="flex: 1; min-width: 120px;">
-                            <div style="font-weight: bold; margin-bottom: 8px; color: #FFD700;">DC: <em style="opacity: 0.7;">TBD</em></div>
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #FFD700;">DC: Chris O'Leary</div>
                             <div style="font-size: 0.9em; display: flex; flex-direction: column; gap: 4px; padding-left: 10px; border-left: 2px solid rgba(255,255,255,0.3);">
                                 <div><strong>DL:</strong> <em style="opacity: 0.7;">TBD</em></div>
                                 <div><strong>DB:</strong> <em style="opacity: 0.7;">TBD</em></div>
@@ -935,6 +936,10 @@
                                         <div class="player-name">Donte Jackson</div>
                                         <div class="player-cap">$8.5M</div>
                                     </div>
+                                    <div class="player-card" draggable="true">
+                                        <div class="player-name">Cam Hart</div>
+                                        <div class="player-cap">$1.2M</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1019,10 +1024,6 @@
                             <div class="formation-position">
                                 <div class="position-label">Reserves</div>
                                 <div class="player-slots" data-position="BENCH">
-                                    <div class="player-card" draggable="true">
-                                        <div class="player-name">Cam Hart</div>
-                                        <div class="player-cap">$1.2M</div>
-                                    </div>
                                     <div class="player-card" draggable="true">
                                         <div class="player-name">Jordan Oladokun</div>
                                         <div class="player-cap">$1.0M</div>
@@ -1112,19 +1113,84 @@
                     <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">Click to set contract, double-click green to edit</p>
 
                     <!-- Add Custom Player Button -->
-                    <button id="add-custom-player-btn" style="width: 100%; padding: 10px; margin-bottom: 15px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9em; transition: opacity 0.2s;">
+                    <button id="add-custom-player-btn" style="width: 100%; padding: 10px; margin-bottom: 10px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9em; transition: opacity 0.2s;">
                         + Add Custom Player
+                    </button>
+
+                    <!-- Add Draft Pick Button -->
+                    <button id="add-draft-pick-btn" style="width: 100%; padding: 10px; margin-bottom: 15px; background: linear-gradient(135deg, #FFC107 0%, #FFB300 100%); color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9em; transition: opacity 0.2s;">
+                        + Add a draft pick
                     </button>
 
                     <!-- Position Tabs -->
                     <div class="fa-tabs" style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 15px;">
+                        <button class="fa-tab" data-tab="RB" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">RB</button>
                         <button class="fa-tab active" data-tab="TE" style="padding: 8px 12px; border: none; background: #0080C6; color: white; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">TE</button>
+                        <button class="fa-tab" data-tab="LT" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">LT</button>
                         <button class="fa-tab" data-tab="LG" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">LG</button>
                         <button class="fa-tab" data-tab="C" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">C</button>
                         <button class="fa-tab" data-tab="RG" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">RG</button>
                         <button class="fa-tab" data-tab="EDGE" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">EDGE</button>
                         <button class="fa-tab" data-tab="IDL" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">IDL</button>
                         <button class="fa-tab" data-tab="S" style="padding: 8px 12px; border: none; background: #e0e0e0; color: #333; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 0.85em;">S</button>
+                    </div>
+
+                    <!-- RB Tab Content -->
+                    <div class="fa-tab-content" data-tab-content="RB" style="display: none;">
+                        <div class="player-slots fa-grid" data-position="POOL-RB" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <div class="player-card fa-card" data-team="Steelers" data-age="28"><div class="player-name">Najee Harris</div><div class="player-team">Steelers • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Commanders" data-age="29"><div class="player-name">Austin Ekeler</div><div class="player-team">Commanders • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Jaguars" data-age="26"><div class="player-name">Travis Etienne</div><div class="player-team">Jaguars • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Broncos" data-age="26"><div class="player-name">Javonte Williams</div><div class="player-team">Broncos • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Cowboys" data-age="27"><div class="player-name">Rico Dowdle</div><div class="player-team">Cowboys • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Browns" data-age="29"><div class="player-name">Nick Chubb</div><div class="player-team">Browns • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Jets" data-age="26"><div class="player-name">Breece Hall</div><div class="player-team">Jets • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Seahawks" data-age="25"><div class="player-name">Kenneth Walker III</div><div class="player-team">Seahawks • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chargers" data-age="27"><div class="player-name">J.K. Dobbins</div><div class="player-team">Chargers • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Eagles" data-age="28"><div class="player-name">Saquon Barkley</div><div class="player-team">Eagles • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Packers" data-age="26"><div class="player-name">Josh Jacobs</div><div class="player-team">Packers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Lions" data-age="29"><div class="player-name">David Montgomery</div><div class="player-team">Lions • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Lions" data-age="26"><div class="player-name">Jahmyr Gibbs</div><div class="player-team">Lions • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Texans" data-age="25"><div class="player-name">Joe Mixon</div><div class="player-team">Texans • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Rams" data-age="25"><div class="player-name">Kyren Williams</div><div class="player-team">Rams • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="49ers" data-age="28"><div class="player-name">Isaac Guerendo</div><div class="player-team">49ers • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Ravens" data-age="28"><div class="player-name">Derrick Henry</div><div class="player-team">Ravens • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Cardinals" data-age="26"><div class="player-name">James Conner</div><div class="player-team">Cardinals • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Buccaneers" data-age="26"><div class="player-name">Bucky Irving</div><div class="player-team">Buccaneers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Buccaneers" data-age="25"><div class="player-name">Rachaad White</div><div class="player-team">Buccaneers • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Vikings" data-age="24"><div class="player-name">Aaron Jones</div><div class="player-team">Vikings • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Dolphins" data-age="27"><div class="player-name">De'Von Achane</div><div class="player-team">Dolphins • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Saints" data-age="26"><div class="player-name">Alvin Kamara</div><div class="player-team">Saints • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Falcons" data-age="27"><div class="player-name">Bijan Robinson</div><div class="player-team">Falcons • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chiefs" data-age="26"><div class="player-name">Isiah Pacheco</div><div class="player-team">Chiefs • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chiefs" data-age="25"><div class="player-name">Kareem Hunt</div><div class="player-team">Chiefs • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bengals" data-age="27"><div class="player-name">Chase Brown</div><div class="player-team">Bengals • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bengals" data-age="26"><div class="player-name">Zack Moss</div><div class="player-team">Bengals • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bears" data-age="28"><div class="player-name">D'Andre Swift</div><div class="player-team">Bears • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Panthers" data-age="28"><div class="player-name">Chuba Hubbard</div><div class="player-team">Panthers • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Panthers" data-age="24"><div class="player-name">Miles Sanders</div><div class="player-team">Panthers • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Colts" data-age="26"><div class="player-name">Jonathan Taylor</div><div class="player-team">Colts • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Colts" data-age="25"><div class="player-name">Trey Sermon</div><div class="player-team">Colts • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Patriots" data-age="23"><div class="player-name">Rhamondre Stevenson</div><div class="player-team">Patriots • 23</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Patriots" data-age="22"><div class="player-name">Antonio Gibson</div><div class="player-team">Patriots • 22</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Titans" data-age="26"><div class="player-name">Tony Pollard</div><div class="player-team">Titans • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Titans" data-age="24"><div class="player-name">Tyjae Spears</div><div class="player-team">Titans • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Raiders" data-age="28"><div class="player-name">Alexander Mattison</div><div class="player-team">Raiders • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Raiders" data-age="25"><div class="player-name">Zamir White</div><div class="player-team">Raiders • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Giants" data-age="28"><div class="player-name">Devin Singletary</div><div class="player-team">Giants • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Giants" data-age="23"><div class="player-name">Tyrone Tracy Jr.</div><div class="player-team">Giants • 23</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bills" data-age="26"><div class="player-name">James Cook</div><div class="player-team">Bills • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bills" data-age="25"><div class="player-name">Ty Johnson</div><div class="player-team">Bills • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Commanders" data-age="24"><div class="player-name">Brian Robinson Jr.</div><div class="player-team">Commanders • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Commanders" data-age="22"><div class="player-name">Chris Rodriguez Jr.</div><div class="player-team">Commanders • 22</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Steelers" data-age="26"><div class="player-name">Jaylen Warren</div><div class="player-team">Steelers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Steelers" data-age="24"><div class="player-name">Cordarrelle Patterson</div><div class="player-team">Steelers • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Ravens" data-age="28"><div class="player-name">Justice Hill</div><div class="player-team">Ravens • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Texans" data-age="25"><div class="player-name">Dameon Pierce</div><div class="player-team">Texans • 25</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Broncos" data-age="23"><div class="player-name">Jaleel McLaughlin</div><div class="player-team">Broncos • 23</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Broncos" data-age="24"><div class="player-name">Audric Estime</div><div class="player-team">Broncos • 24</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chargers" data-age="25"><div class="player-name">Kimani Vidal</div><div class="player-team">Chargers • 25</div><div class="player-cap">Click to set $</div></div>
+                        </div>
                     </div>
 
                     <!-- TE Tab Content -->
@@ -1145,6 +1211,45 @@
                             <div class="player-card fa-card" data-team="Ravens" data-age="27"><div class="player-name">Charlie Kolar</div><div class="player-team">Ravens • 27</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Texans" data-age="28"><div class="player-name">Harrison Bryant</div><div class="player-team">Texans • 28</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Dolphins" data-age="26"><div class="player-name">Greg Dulcich</div><div class="player-team">Dolphins • 26</div><div class="player-cap">Click to set $</div></div>
+                        </div>
+                    </div>
+
+                    <!-- LT Tab Content -->
+                    <div class="fa-tab-content" data-tab-content="LT" style="display: none;">
+                        <div class="player-slots fa-grid" data-position="POOL-LT" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <div class="player-card fa-card" data-team="Cardinals" data-age="29"><div class="player-name">Jonah Williams</div><div class="player-team">Cardinals • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Browns" data-age="31"><div class="player-name">Cam Robinson</div><div class="player-team">Browns • 31</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Giants" data-age="32"><div class="player-name">Jermaine Eluemunor</div><div class="player-team">Giants • 32</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Seahawks" data-age="26"><div class="player-name">Charles Cross</div><div class="player-team">Seahawks • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chargers" data-age="27"><div class="player-name">Trevor Penning</div><div class="player-team">Chargers • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Jaguars" data-age="28"><div class="player-name">Cole Van Lanen</div><div class="player-team">Jaguars • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Rams" data-age="33"><div class="player-name">D.J. Humphries</div><div class="player-team">Rams • 33</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Vikings" data-age="30"><div class="player-name">Justin Skule</div><div class="player-team">Vikings • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Panthers" data-age="30"><div class="player-name">Yosuah Nijman</div><div class="player-team">Panthers • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Ravens" data-age="31"><div class="player-name">Joseph Noteboom</div><div class="player-team">Ravens • 31</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Steelers" data-age="33"><div class="player-name">Andrus Peat</div><div class="player-team">Steelers • 33</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Giants" data-age="27"><div class="player-name">Joshua Ezeudu</div><div class="player-team">Giants • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="49ers" data-age="28"><div class="player-name">Ben Bartch</div><div class="player-team">49ers • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Packers" data-age="26"><div class="player-name">Sean Rhyan</div><div class="player-team">Packers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Commanders" data-age="34"><div class="player-name">George Fant</div><div class="player-team">Commanders • 34</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Broncos" data-age="30"><div class="player-name">Geron Christian</div><div class="player-team">Broncos • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Lions" data-age="32"><div class="player-name">Dan Skipper</div><div class="player-team">Lions • 32</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Vikings" data-age="31"><div class="player-name">Matt Nelson</div><div class="player-team">Vikings • 31</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Cowboys" data-age="29"><div class="player-name">Hakeem Adeniji</div><div class="player-team">Cowboys • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Titans" data-age="29"><div class="player-name">Olisaemeka Udoh</div><div class="player-team">Titans • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Raiders" data-age="29"><div class="player-name">Stone Forsythe</div><div class="player-team">Raiders • 29</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Eagles" data-age="30"><div class="player-name">Brett Toth</div><div class="player-team">Eagles • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Lions" data-age="30"><div class="player-name">Jamarco Jones</div><div class="player-team">Lions • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Patriots" data-age="28"><div class="player-name">Yasir Durant</div><div class="player-team">Patriots • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Dolphins" data-age="30"><div class="player-name">Yodny Cajuste</div><div class="player-team">Dolphins • 30</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Bears" data-age="27"><div class="player-name">Braxton Jones</div><div class="player-team">Bears • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Patriots" data-age="27"><div class="player-name">Vederian Lowe</div><div class="player-team">Patriots • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Colts" data-age="27"><div class="player-name">Luke Tenuta</div><div class="player-team">Colts • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Packers" data-age="26"><div class="player-name">Rasheed Walker</div><div class="player-team">Packers • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Broncos" data-age="27"><div class="player-name">Alex Palczewski</div><div class="player-team">Broncos • 27</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Dolphins" data-age="28"><div class="player-name">Obinna Eze</div><div class="player-team">Dolphins • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Eagles" data-age="26"><div class="player-name">Luke Felix-Fualalo</div><div class="player-team">Eagles • 26</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Falcons" data-age="26"><div class="player-name">Ryan Hayes</div><div class="player-team">Falcons • 26</div><div class="player-cap">Click to set $</div></div>
                         </div>
                     </div>
 
@@ -1271,6 +1376,7 @@
                             <div class="player-card fa-card" data-team="Bills" data-age="28"><div class="player-name">Damar Hamlin</div><div class="player-team">Bills • 28</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Giants" data-age="26"><div class="player-name">Dane Belton</div><div class="player-team">Giants • 26</div><div class="player-cap">Click to set $</div></div>
                             <div class="player-card fa-card" data-team="Lions" data-age="28"><div class="player-name">Daniel Thomas</div><div class="player-team">Lions • 28</div><div class="player-cap">Click to set $</div></div>
+                            <div class="player-card fa-card" data-team="Chargers" data-age="34"><div class="player-name">Tony Jefferson</div><div class="player-team">Chargers • 34</div><div class="player-cap">Click to set $</div></div>
                         </div>
                     </div>
                 </div>
@@ -1321,6 +1427,49 @@
                         <div style="display: flex; gap: 10px; justify-content: center;">
                             <button id="custom-player-cancel" style="padding: 12px 25px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
                             <button id="custom-player-confirm" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Add Player</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Draft Pick Modal -->
+                <div id="draft-pick-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                        <h3 style="color: #FFC107; margin-bottom: 20px;">Add a Draft Pick</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                            <input type="text" id="draft-pick-name" placeholder="Player Name" style="padding: 12px; font-size: 1em; border: 2px solid #FFC107; border-radius: 8px; text-align: center;">
+                            <div style="display: flex; gap: 10px;">
+                                <select id="draft-pick-round" style="padding: 12px; font-size: 1em; border: 2px solid #FFC107; border-radius: 8px; width: 120px; cursor: pointer;">
+                                    <option value="">Round</option>
+                                    <option value="1">Round 1</option>
+                                    <option value="2">Round 2</option>
+                                    <option value="3">Round 3</option>
+                                    <option value="4">Round 4</option>
+                                    <option value="5">Round 5</option>
+                                    <option value="6">Round 6</option>
+                                    <option value="7">Round 7</option>
+                                </select>
+                                <select id="draft-pick-position" style="padding: 12px; font-size: 1em; border: 2px solid #FFC107; border-radius: 8px; flex: 1; cursor: pointer;">
+                                    <option value="">Select Position</option>
+                                    <option value="RB">RB - Running Back</option>
+                                    <option value="TE">TE - Tight End</option>
+                                    <option value="LT">LT - Left Tackle</option>
+                                    <option value="LG">LG - Left Guard</option>
+                                    <option value="C">C - Center</option>
+                                    <option value="RG">RG - Right Guard</option>
+                                    <option value="EDGE">EDGE - Edge Rusher</option>
+                                    <option value="IDL">IDL - Interior DL</option>
+                                    <option value="S">S - Safety</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <span style="font-size: 1.2em; font-weight: bold;">$</span>
+                                <input type="number" id="draft-pick-contract" placeholder="Contract (e.g. 2.5)" style="padding: 12px; font-size: 1em; border: 2px solid #FFC107; border-radius: 8px; width: 120px; text-align: center;" min="0.1" step="0.1">
+                                <span style="font-size: 1em; font-weight: bold;">M</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: center;">
+                            <button id="draft-pick-cancel" style="padding: 12px 25px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
+                            <button id="draft-pick-confirm" style="padding: 12px 25px; background: #FFC107; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Add Draft Pick</button>
                         </div>
                     </div>
                 </div>
@@ -1865,6 +2014,121 @@
         customPlayerContract.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 customPlayerConfirm.click();
+            }
+        });
+
+        // ========== DRAFT PICK MODAL FUNCTIONALITY ==========
+        const draftPickModal = document.getElementById('draft-pick-modal');
+        const draftPickBtn = document.getElementById('add-draft-pick-btn');
+        const draftPickName = document.getElementById('draft-pick-name');
+        const draftPickRound = document.getElementById('draft-pick-round');
+        const draftPickPosition = document.getElementById('draft-pick-position');
+        const draftPickContract = document.getElementById('draft-pick-contract');
+        const draftPickCancel = document.getElementById('draft-pick-cancel');
+        const draftPickConfirm = document.getElementById('draft-pick-confirm');
+
+        // Open draft pick modal
+        draftPickBtn.addEventListener('click', function() {
+            draftPickName.value = '';
+            draftPickRound.value = '';
+            draftPickPosition.value = '';
+            draftPickContract.value = '';
+            draftPickModal.style.display = 'flex';
+            draftPickName.focus();
+        });
+
+        // Cancel draft pick modal
+        draftPickCancel.addEventListener('click', function() {
+            draftPickModal.style.display = 'none';
+        });
+
+        // Close on outside click
+        draftPickModal.addEventListener('click', function(e) {
+            if (e.target === draftPickModal) {
+                draftPickModal.style.display = 'none';
+            }
+        });
+
+        // Confirm draft pick
+        draftPickConfirm.addEventListener('click', function() {
+            const name = draftPickName.value.trim();
+            const round = draftPickRound.value;
+            const position = draftPickPosition.value;
+            const contract = parseFloat(draftPickContract.value);
+
+            if (!name) {
+                alert('Please enter a player name');
+                return;
+            }
+            if (!round) {
+                alert('Please select a round');
+                return;
+            }
+            if (!position) {
+                alert('Please select a position');
+                return;
+            }
+            if (isNaN(contract) || contract <= 0) {
+                alert('Please enter a valid contract amount');
+                return;
+            }
+
+            // Create the new draft pick card
+            const card = document.createElement('div');
+            card.className = 'player-card fa-card contract-set';
+            card.setAttribute('data-team', 'Draft Pick');
+            card.setAttribute('data-round', round);
+            card.setAttribute('draggable', 'true');
+            card.innerHTML = `
+                <div class="player-name">${name}</div>
+                <div class="player-team">Draft Pick • Rd ${round}</div>
+                <div class="player-cap">$${contract.toFixed(1)}M</div>
+            `;
+
+            // Add drag event listeners
+            card.addEventListener('dragstart', function(e) {
+                draggedElement = this;
+                sourcePosition = this.closest('.player-slots').getAttribute('data-position');
+                this.style.opacity = '0.5';
+            });
+
+            card.addEventListener('dragend', function(e) {
+                this.style.opacity = '1';
+                sourcePosition = null;
+            });
+
+            // Add double-click to edit
+            card.addEventListener('dblclick', function(e) {
+                if (this.classList.contains('contract-set')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openContractModal(this, true);
+                }
+            });
+
+            // Find the correct tab content and add the card
+            const tabContent = document.querySelector(`[data-tab-content="${position}"]`);
+            if (tabContent) {
+                const grid = tabContent.querySelector('.fa-grid');
+                if (grid) {
+                    grid.appendChild(card);
+                }
+            }
+
+            // Save state
+            saveDepthChart();
+
+            // Close modal
+            draftPickModal.style.display = 'none';
+
+            // Switch to that tab
+            document.querySelector(`[data-tab="${position}"]`)?.click();
+        });
+
+        // Handle Enter key in draft pick modal
+        draftPickContract.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                draftPickConfirm.click();
             }
         });
     </script>
