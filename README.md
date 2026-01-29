@@ -1,6 +1,6 @@
-# LA Chargers 2026 Salary Cap Dashboard
+# Guilty As Charged 2026 Offseason Hub
 
-An interactive web dashboard for analyzing the LA Chargers' 2026 salary cap situation, featuring cut candidates analysis and a drag-and-drop depth chart builder.
+An interactive web dashboard for analyzing the LA Chargers' 2026 salary cap situation, featuring cut candidates analysis, drag-and-drop depth chart builder, and comprehensive free agency tools.
 
 ## Features
 
@@ -34,7 +34,7 @@ An interactive web dashboard for analyzing the LA Chargers' 2026 salary cap situ
 - **Visual Indicators**: Cut candidates marked with red borders
 
 ### Free Agent Pool (2026 FA Class)
-- **Tabbed Interface**: Easy navigation across 9 position groups
+- **Tabbed Interface**: Easy navigation across 10 position groups
   - **RB**: 50+ running backs (Najee Harris, Saquon Barkley, Breece Hall, etc.)
   - **TE**: 15+ tight ends (Dallas Goedert, David Njoku, etc.)
   - **LT**: 33+ left tackles (Jonah Williams, Cam Robinson, Charles Cross, etc.)
@@ -43,6 +43,7 @@ An interactive web dashboard for analyzing the LA Chargers' 2026 salary cap situ
   - **RG**: 14+ right guards (Wyatt Teller, Alijah Vera-Tucker, etc.)
   - **EDGE**: Edge rushers available
   - **IDL**: Interior defensive linemen
+  - **LB**: 85+ linebackers (Lavonte David, Bobby Wagner, Demario Davis, Devin White, etc.)
   - **S**: 15+ safeties (Tony Jefferson, Chauncey Gardner-Johnson, etc.)
 - **Sticky Sidebar**: Pool stays visible while scrolling main page
 - **Internal Scrolling**: Smooth scrolling within FA pool (85vh height)
@@ -80,7 +81,7 @@ All player data and salary cap information sourced from [Over The Cap - LA Charg
 
 ### Building Your Roster
 4. **Browse Free Agents**:
-   - Click position tabs (RB, TE, LT, LG, C, RG, EDGE, IDL, S) to view available players
+   - Click position tabs (RB, TE, LT, LG, C, RG, EDGE, IDL, LB, S) to view available players
    - Scroll within the FA pool to see all options
    - FA pool stays visible as you scroll the main page
 5. **Set Contracts**:
@@ -143,11 +144,8 @@ All player data and salary cap information sourced from [Over The Cap - LA Charg
   - Green: Add Custom Player, positive values
   - Yellow: Add Draft Pick, available cap
   - Red: Cut candidates, negative values
-  - Blue: Front Office
-  - Gold: Head Coach
-  - Green: Offensive Staff
-  - Red: Defensive Staff
-  - Purple: Special Teams
+  - Blue: Front Office, Offensive Staff, Special Teams
+  - Gold: Head Coach, Defensive Staff
 - **Responsive Design**: Adapts to different screen sizes
 - **Custom Scrollbars**: Chargers blue-themed scrollbars
 
@@ -165,7 +163,7 @@ chargers-dashboard/
 
 ## Free Agent Pool Overview
 
-The dashboard includes 150+ real 2026 free agents across 9 position groups:
+The dashboard includes 235+ real 2026 free agents across 10 position groups:
 
 | Position | Count | Notable Players |
 |----------|-------|-----------------|
@@ -177,6 +175,7 @@ The dashboard includes 150+ real 2026 free agents across 9 position groups:
 | RG | 14+ | Wyatt Teller, Alijah Vera-Tucker, Kevin Zeitler |
 | EDGE | Multiple | Top pass rushers available |
 | IDL | Multiple | Interior defensive line depth |
+| LB | 85+ | Lavonte David, Bobby Wagner, Demario Davis, Kenneth Murray, Devin White, Denzel Perryman |
 | S | 15+ | Tony Jefferson, Chauncey Gardner-Johnson, Bryan Cook |
 
 ## Key Players & Cap Savings (2026)
@@ -212,6 +211,14 @@ Feel free to fork this repository and submit pull requests for improvements!
 Created by Josh Gray ([@joshgray300](https://github.com/joshgray300))
 
 ## Recent Updates
+
+### January 2026 - Latest Updates
+- ✅ Rebranded to **"Guilty As Charged 2026 Offseason Hub"**
+- ✅ Added LB tab with 85+ linebackers (Lavonte David, Bobby Wagner, Devin White, etc.)
+- ✅ Updated coaching staff color scheme for better visual hierarchy
+  - Offensive Staff & Special Teams: Chargers blue
+  - Defensive Staff: Gold (matching Head Coach)
+- ✅ Expanded to 10 total FA position tabs (235+ players)
 
 ### January 2026 - Major Feature Expansion
 - ✅ Added RB tab with 50+ running backs to FA pool
