@@ -488,9 +488,14 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>⚡ Guilty As Charged 2026 Offseason Hub</h1>
-            <p class="subtitle">Free Agency Analysis & Cut Candidates</p>
+        <header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+                <h1>⚡ Guilty As Charged 2026 Offseason Hub</h1>
+                <p class="subtitle">Free Agency Analysis & Cut Candidates</p>
+            </div>
+            <button id="saved-offseasons-btn" style="padding: 12px 24px; background: linear-gradient(135deg, #FFC20E 0%, #FFB300 100%); color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.95em; transition: all 0.2s; box-shadow: 0 4px 12px rgba(255,194,14,0.3);">
+                📁 Saved Offseasons
+            </button>
         </header>
 
         <!-- Coaching Staff Section -->
@@ -572,6 +577,13 @@
                 <h3>Active Roster</h3>
                 <div class="value">51 Players</div>
             </div>
+        </div>
+
+        <!-- Save & Publish Button -->
+        <div style="text-align: center; margin: 20px 0;">
+            <button id="save-publish-btn" style="padding: 15px 40px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1.1em; transition: all 0.2s; box-shadow: 0 4px 15px rgba(40,167,69,0.3);">
+                💾 Save & Publish Offseason Scenario
+            </button>
         </div>
 
         <div class="section">
@@ -1570,6 +1582,71 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Save & Publish Modal -->
+                <div id="save-publish-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                        <h3 style="color: #28a745; margin-bottom: 20px;">💾 Save & Publish Offseason Scenario</h3>
+                        <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                            <input type="text" id="scenario-name" placeholder="Scenario Name (e.g., Version 1, Conservative Build)" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; text-align: center;">
+                            <input type="text" id="scenario-author" placeholder="Your Name (optional)" style="padding: 12px; font-size: 1em; border: 2px solid #28a745; border-radius: 8px; text-align: center;">
+                            <textarea id="scenario-description" placeholder="Describe your offseason strategy... (What moves did you make? What was your approach?)" style="padding: 12px; font-size: 0.95em; border: 2px solid #28a745; border-radius: 8px; text-align: left; min-height: 120px; resize: vertical; font-family: inherit;"></textarea>
+                            <div style="font-size: 0.9em; color: #666; text-align: left; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                <strong>This will save:</strong>
+                                <ul style="margin: 5px 0 0 20px;">
+                                    <li>Current roster configuration</li>
+                                    <li>Cap space calculations</li>
+                                    <li>All depth chart positions</li>
+                                    <li>Your description and strategy notes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px; justify-content: center;">
+                            <button id="save-publish-cancel" style="padding: 12px 25px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Cancel</button>
+                            <button id="save-publish-confirm" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Save Scenario</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Offseasons List Modal -->
+                <div id="saved-offseasons-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; overflow-y: auto;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 style="color: #0080C6; margin: 0;">📁 Saved Offseason Scenarios</h2>
+                            <button id="close-saved-offseasons" style="padding: 8px 16px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">✕ Close</button>
+                        </div>
+                        <div id="saved-offseasons-list" style="display: flex; flex-direction: column; gap: 15px;">
+                            <!-- Saved scenarios will be populated here -->
+                        </div>
+                        <div id="no-saved-scenarios" style="display: none; text-align: center; padding: 40px; color: #666;">
+                            <p style="font-size: 1.1em;">No saved scenarios yet.</p>
+                            <p>Create your first offseason scenario by clicking "Save & Publish"!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Offseason Detail View Modal -->
+                <div id="scenario-detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1001; justify-content: center; align-items: center; overflow-y: auto;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <div>
+                                <h2 id="scenario-detail-name" style="color: #0080C6; margin: 0;"></h2>
+                                <p id="scenario-detail-info" style="color: #666; margin: 5px 0 0 0;"></p>
+                            </div>
+                            <button id="close-scenario-detail" style="padding: 8px 16px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">✕ Close</button>
+                        </div>
+
+                        <!-- Cap Overview -->
+                        <div id="scenario-cap-overview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                            <!-- Cap cards will be populated here -->
+                        </div>
+
+                        <!-- Roster Snapshot -->
+                        <div id="scenario-roster-snapshot">
+                            <!-- Roster will be populated here -->
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #0080C6;">
@@ -2226,6 +2303,397 @@
         draftPickContract.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 draftPickConfirm.click();
+            }
+        });
+
+        // ========== SAVE & PUBLISH FUNCTIONALITY ==========
+        const savePublishBtn = document.getElementById('save-publish-btn');
+        const savePublishModal = document.getElementById('save-publish-modal');
+        const savedOffseasonsBtn = document.getElementById('saved-offseasons-btn');
+        const savedOffseasonsModal = document.getElementById('saved-offseasons-modal');
+        const scenarioDetailModal = document.getElementById('scenario-detail-modal');
+        const scenarioName = document.getElementById('scenario-name');
+        const scenarioAuthor = document.getElementById('scenario-author');
+        const scenarioDescription = document.getElementById('scenario-description');
+        const savePublishCancel = document.getElementById('save-publish-cancel');
+        const savePublishConfirm = document.getElementById('save-publish-confirm');
+        const closeSavedOffseasons = document.getElementById('close-saved-offseasons');
+        const closeScenarioDetail = document.getElementById('close-scenario-detail');
+        const savedOffseasonsList = document.getElementById('saved-offseasons-list');
+        const noSavedScenarios = document.getElementById('no-saved-scenarios');
+
+        // Get stored author name if exists
+        let storedAuthor = localStorage.getItem('offseasonAuthor') || '';
+        if (storedAuthor) {
+            scenarioAuthor.value = storedAuthor;
+        }
+
+        // Open Save & Publish modal
+        savePublishBtn.addEventListener('click', function() {
+            scenarioName.value = '';
+            scenarioDescription.value = '';
+            if (!scenarioAuthor.value && storedAuthor) {
+                scenarioAuthor.value = storedAuthor;
+            }
+            savePublishModal.style.display = 'flex';
+            scenarioName.focus();
+        });
+
+        // Cancel save
+        savePublishCancel.addEventListener('click', function() {
+            savePublishModal.style.display = 'none';
+        });
+
+        // Close on outside click
+        savePublishModal.addEventListener('click', function(e) {
+            if (e.target === savePublishModal) {
+                savePublishModal.style.display = 'none';
+            }
+        });
+
+        // Save scenario
+        savePublishConfirm.addEventListener('click', function() {
+            const name = scenarioName.value.trim();
+            const author = scenarioAuthor.value.trim();
+            const description = scenarioDescription.value.trim();
+
+            if (!name) {
+                alert('Please enter a scenario name');
+                return;
+            }
+
+            // Store author name for future use
+            if (author) {
+                localStorage.setItem('offseasonAuthor', author);
+                storedAuthor = author;
+            }
+
+            // Create scenario object
+            const scenario = {
+                id: Date.now(),
+                name: name,
+                author: author || 'Anonymous',
+                description: description || 'No description provided.',
+                date: new Date().toLocaleString(),
+                timestamp: Date.now(),
+                capSpace: document.getElementById('available-cap').textContent,
+                capAdjustment: document.getElementById('cap-adjustment').textContent,
+                capAdjustmentValue: capAdjustment,
+                roster: captureRosterSnapshot(),
+                depthChartState: localStorage.getItem('chargersDepthChart'),
+                capAdjustmentState: localStorage.getItem('chargersCapAdjustment')
+            };
+
+            // Get existing scenarios
+            let scenarios = JSON.parse(localStorage.getItem('savedOffseasons') || '[]');
+            scenarios.unshift(scenario); // Add to beginning
+            localStorage.setItem('savedOffseasons', JSON.stringify(scenarios));
+
+            savePublishModal.style.display = 'none';
+            alert('Offseason scenario saved successfully!');
+        });
+
+        // Default roster configuration (baseline for comparison)
+        const DEFAULT_ROSTER = {
+            'QB': ['Justin Herbert'], 'RB': ['Omarion Hampton'], 'WR1': ['Ladd McConkey'],
+            'WR2': ['Quentin Johnston', 'Derius Davis'], 'WR3': ['Tre Harris', 'KeAndre Lambert-Smith'],
+            'TE': ['Oronde Gadsden II', 'Will Dissly'], 'LT': ['Rashawn Slater'], 'LG': ['Ben Cleveland'],
+            'C': ['Bradley Bozeman'], 'RG': ['Mekhi Becton'], 'RT': ['Joe Alt'],
+            'CB3': ['Derwin James', 'Nikko Reed'], 'EDGE1': ['Tuli Tuipulotu', 'Bud Dupree'],
+            'DT': ['Justin Eboigbe', 'Scott Matlock'], 'NT': ['Jamaree Caldwell'], 'EDGE2': ['Kyle Kennard'],
+            'CB1': ['Donte Jackson', 'Cam Hart'], 'CB2': ['Tarheeb Still'],
+            'LB1': ['Daiyan Henley', 'Junior Colson'], 'LB2': ['Troy Dye', 'Marlowe Wax'],
+            'SS': ['R.J. Mickens'], 'FS': ['Elijah Molden'],
+            'K': ['Cameron Dicker'], 'P': ['J.K. Scott']
+        };
+
+        // Capture roster snapshot
+        function captureRosterSnapshot() {
+            const snapshot = {
+                offense: [],
+                defense: [],
+                specialTeams: []
+            };
+
+            // Get all position slots on the page
+            const allPositions = document.querySelectorAll('.player-slots[data-position]');
+
+            // Define offensive, defensive, and special teams positions
+            const offensePos = ['QB', 'RB', 'WR1', 'WR2', 'WR3', 'TE', 'LT', 'LG', 'C', 'RG', 'RT'];
+            const defensePos = ['EDGE1', 'EDGE2', 'DT', 'NT', 'CB1', 'CB2', 'CB3', 'SS', 'FS', 'LB1', 'LB2'];
+            const specialPos = ['K', 'P', 'LS'];
+
+            allPositions.forEach(pos => {
+                const position = pos.getAttribute('data-position');
+
+                // Skip pool positions
+                if (position && position.startsWith('POOL-')) return;
+                if (position === 'BENCH') return;
+
+                const players = [];
+                pos.querySelectorAll('.player-card:not(.fa-card)').forEach(card => {
+                    const nameEl = card.querySelector('.player-name');
+                    const capEl = card.querySelector('.player-cap');
+                    const teamEl = card.querySelector('.player-team');
+
+                    // Capture ALL players for comparison with default roster
+                    if (nameEl && capEl) {
+                        const isDraftPick = teamEl && teamEl.textContent.includes('Draft Pick');
+                        const isCustom = teamEl && teamEl.textContent.includes('Custom');
+                        const isFreeAgent = card.classList.contains('contract-set');
+
+                        players.push({
+                            name: nameEl.textContent.trim(),
+                            cap: capEl.textContent.trim(),
+                            type: isDraftPick ? 'Draft Pick' : (isCustom ? 'Custom' : (isFreeAgent ? 'Free Agent' : 'Default'))
+                        });
+                    }
+                });
+
+                if (players.length > 0) {
+                    // Categorize by position type
+                    if (offensePos.includes(position)) {
+                        snapshot.offense.push({ position, players });
+                    } else if (defensePos.includes(position)) {
+                        snapshot.defense.push({ position, players });
+                    } else if (specialPos.includes(position)) {
+                        snapshot.specialTeams.push({ position, players });
+                    }
+                }
+            });
+
+            return snapshot;
+        }
+
+        // Open Saved Offseasons modal
+        savedOffseasonsBtn.addEventListener('click', function() {
+            loadSavedScenarios();
+            savedOffseasonsModal.style.display = 'flex';
+        });
+
+        // Close Saved Offseasons modal
+        closeSavedOffseasons.addEventListener('click', function() {
+            savedOffseasonsModal.style.display = 'none';
+        });
+
+        savedOffseasonsModal.addEventListener('click', function(e) {
+            if (e.target === savedOffseasonsModal) {
+                savedOffseasonsModal.style.display = 'none';
+            }
+        });
+
+        // Load and display saved scenarios
+        function loadSavedScenarios() {
+            const scenarios = JSON.parse(localStorage.getItem('savedOffseasons') || '[]');
+
+            if (scenarios.length === 0) {
+                savedOffseasonsList.style.display = 'none';
+                noSavedScenarios.style.display = 'block';
+                return;
+            }
+
+            savedOffseasonsList.style.display = 'flex';
+            noSavedScenarios.style.display = 'none';
+            savedOffseasonsList.innerHTML = '';
+
+            scenarios.forEach(scenario => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 20px; border-radius: 12px; border-left: 4px solid #0080C6; cursor: pointer; transition: all 0.2s;';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                        <div>
+                            <h3 style="color: #0080C6; margin: 0 0 5px 0;">${scenario.name}</h3>
+                            <p style="color: #666; margin: 0; font-size: 0.9em;">By ${scenario.author} • ${scenario.date}</p>
+                        </div>
+                        <button class="delete-scenario" data-id="${scenario.id}" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.85em;">Delete</button>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 15px;">
+                        <div style="background: white; padding: 10px; border-radius: 8px; flex: 1; text-align: center;">
+                            <div style="font-size: 0.85em; color: #666;">Available Cap</div>
+                            <div style="font-weight: bold; color: #28a745; font-size: 1.1em;">${scenario.capSpace}</div>
+                        </div>
+                        <div style="background: white; padding: 10px; border-radius: 8px; flex: 1; text-align: center;">
+                            <div style="font-size: 0.85em; color: #666;">Roster Changes</div>
+                            <div style="font-weight: bold; color: #0080C6; font-size: 1.1em;">${scenario.capAdjustment}</div>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('delete-scenario')) {
+                        viewScenarioDetail(scenario);
+                    }
+                });
+
+                // Handle delete
+                card.querySelector('.delete-scenario').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (confirm(`Delete "${scenario.name}"?`)) {
+                        deleteScenario(scenario.id);
+                    }
+                });
+
+                savedOffseasonsList.appendChild(card);
+            });
+        }
+
+        // Delete scenario
+        function deleteScenario(id) {
+            let scenarios = JSON.parse(localStorage.getItem('savedOffseasons') || '[]');
+            scenarios = scenarios.filter(s => s.id !== id);
+            localStorage.setItem('savedOffseasons', JSON.stringify(scenarios));
+            loadSavedScenarios();
+        }
+
+        // View scenario detail
+        function viewScenarioDetail(scenario) {
+            document.getElementById('scenario-detail-name').textContent = scenario.name;
+            document.getElementById('scenario-detail-info').textContent = `By ${scenario.author} • ${scenario.date}`;
+
+            // Show cap overview with Load button
+            const capOverview = document.getElementById('scenario-cap-overview');
+            capOverview.innerHTML = `
+                <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 20px; border-radius: 12px; text-align: center;">
+                    <h4 style="color: #666; margin: 0 0 10px 0; font-size: 0.9em;">Roster Changes</h4>
+                    <div style="font-size: 1.8em; font-weight: bold; color: #0080C6;">${scenario.capAdjustment}</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); padding: 20px; border-radius: 12px; text-align: center; color: white;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.9em; opacity: 0.9;">Available Cap Space</h4>
+                    <div style="font-size: 1.8em; font-weight: bold;">${scenario.capSpace}</div>
+                </div>
+                <div style="grid-column: 1 / -1; text-align: center;">
+                    <button id="load-scenario-btn" data-id="${scenario.id}" style="padding: 15px 40px; background: linear-gradient(135deg, #0080C6 0%, #005a8c 100%); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1.1em; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,128,198,0.3);">
+                        🔄 Load This Scenario to Workspace
+                    </button>
+                </div>
+            `;
+
+            // Add click handler for load button
+            document.getElementById('load-scenario-btn').addEventListener('click', function() {
+                loadScenario(scenario);
+            });
+
+            // Show description
+            const rosterSnapshot = document.getElementById('scenario-roster-snapshot');
+            rosterSnapshot.innerHTML = `
+                <h3 style="color: #0080C6; margin-top: 30px;">📝 Scenario Description</h3>
+                <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #0080C6; margin-top: 15px;">
+                    <div style="font-size: 1em; line-height: 1.6; color: #333; white-space: pre-wrap;">${scenario.description || 'No description provided.'}</div>
+                </div>
+            `;
+
+            scenarioDetailModal.style.display = 'flex';
+        }
+
+        // Render changes log (compare against default roster)
+        function renderChangesLog(roster) {
+            let html = '<div style="font-family: monospace; font-size: 0.95em;">';
+            html += '<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 0.9em; color: #666;"><strong>Legend:</strong> Shows players added or removed compared to default roster</div>';
+
+            let hasChanges = false;
+            const sections = [
+                { key: 'offense', title: '⚡ OFFENSE', color: '#0080C6' },
+                { key: 'defense', title: '🛡️ DEFENSE', color: '#0080C6' },
+                { key: 'specialTeams', title: '🦶 SPECIAL TEAMS', color: '#0080C6' }
+            ];
+
+            sections.forEach(section => {
+                const positions = roster[section.key] || [];
+                let sectionHtml = '';
+                let sectionHasChanges = false;
+
+                positions.forEach(pos => {
+                    const defaultPlayers = DEFAULT_ROSTER[pos.position] || [];
+                    const currentPlayers = pos.players || [];
+
+                    // Find additions (in current but not in default)
+                    const additions = currentPlayers.filter(p => !defaultPlayers.includes(p.name));
+
+                    // Find removals (in default but not in current)
+                    const currentNames = currentPlayers.map(p => p.name);
+                    const removals = defaultPlayers.filter(name => !currentNames.includes(name));
+
+                    if (additions.length > 0 || removals.length > 0) {
+                        sectionHasChanges = true;
+                        sectionHtml += `<div style="margin-bottom: 15px;"><div style="font-weight: 600; color: ${section.color}; margin-bottom: 8px;">${pos.position}</div>`;
+
+                        // Show additions
+                        if (additions.length > 0) {
+                            additions.forEach(player => {
+                                const typeLabel = player.type && player.type !== 'Default' ?
+                                    `<span style="background: #e3f2fd; padding: 2px 6px; border-radius: 3px; font-size: 0.85em; margin-left: 5px;">${player.type}</span>` : '';
+                                sectionHtml += `<div style="padding: 5px 0 5px 15px; color: #666; border-left: 3px solid #28a745; margin-left: 10px;">
+                                    <span style="color: #28a745; font-weight: 600;">+ ADDED:</span> ${player.name} <span style="color: #28a745; font-weight: 600;">${player.cap}</span>${typeLabel}
+                                </div>`;
+                            });
+                        }
+
+                        // Show removals
+                        if (removals.length > 0) {
+                            removals.forEach(name => {
+                                sectionHtml += `<div style="padding: 5px 0 5px 15px; color: #666; border-left: 3px solid #dc3545; margin-left: 10px;">
+                                    <span style="color: #dc3545; font-weight: 600;">- REMOVED:</span> ${name}
+                                </div>`;
+                            });
+                        }
+
+                        sectionHtml += '</div>';
+                    }
+                });
+
+                if (sectionHasChanges) {
+                    hasChanges = true;
+                    html += `<div style="margin-bottom: 25px;"><h4 style="color: ${section.color}; margin-bottom: 15px;">${section.title} - Changes</h4>`;
+                    html += sectionHtml;
+                    html += '</div>';
+                }
+            });
+
+            if (!hasChanges) {
+                html += '<p style="text-align: center; color: #666; padding: 40px 20px; background: #f8f9fa; border-radius: 8px;"><strong>No changes detected</strong><br><span style="font-size: 0.9em; opacity: 0.8;">This scenario matches the default roster</span></p>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        // Load scenario into current workspace
+        function loadScenario(scenario) {
+            if (confirm(`Load "${scenario.name}" into your current workspace?\n\nThis will replace your current roster configuration.`)) {
+                try {
+                    // Restore the saved depth chart state
+                    if (scenario.depthChartState) {
+                        localStorage.setItem('chargersDepthChart', scenario.depthChartState);
+                    }
+
+                    // Restore the cap adjustment state
+                    if (scenario.capAdjustmentState) {
+                        localStorage.setItem('chargersCapAdjustment', scenario.capAdjustmentState);
+                    } else if (scenario.capAdjustmentValue !== undefined) {
+                        localStorage.setItem('chargersCapAdjustment', scenario.capAdjustmentValue.toString());
+                    }
+
+                    // Close modals
+                    scenarioDetailModal.style.display = 'none';
+                    savedOffseasonsModal.style.display = 'none';
+
+                    // Reload the page to apply the loaded scenario
+                    alert(`"${scenario.name}" loaded successfully! The page will now reload.`);
+                    location.reload();
+                } catch (error) {
+                    alert('Error loading scenario: ' + error.message);
+                }
+            }
+        }
+
+        // Close scenario detail
+        closeScenarioDetail.addEventListener('click', function() {
+            scenarioDetailModal.style.display = 'none';
+        });
+
+        scenarioDetailModal.addEventListener('click', function(e) {
+            if (e.target === scenarioDetailModal) {
+                scenarioDetailModal.style.display = 'none';
             }
         });
     </script>
